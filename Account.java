@@ -4,6 +4,7 @@ public class Account {
 	
 	private int serialNo;
 	private String description;
+	private double amount;
 	
 	public static double stockholdersEquity;
 	public static double totalAssets;
@@ -25,13 +26,15 @@ public class Account {
 	public static double revenue;
 	public static double supplies;
 	public static double suppliesExpense;
+	public static double operatingExpense;
 	public static double unearnedRevenue;
 	public static double equipment;
 	
-	public Account(int thisSerialNo, String thisDescription)
+	public Account(int thisSerialNo, String thisDescription, double thisAmount)
 	{
 		serialNo = thisSerialNo;
 		description = thisDescription;
+		amount = thisAmount;
 	}
 	
 	public double creditEquipment(double thisAmount)
@@ -68,6 +71,18 @@ public class Account {
 	{
 		suppliesExpense += thisAmount;
 		return suppliesExpense;
+	}
+	
+	public double creditOperatingExpense(double thisAmount)
+	{
+		operatingExpense -= thisAmount;
+		return operatingExpense;
+	}
+	
+	public double debitOperatingExpense(double thisAmount)
+	{
+		operatingExpense += thisAmount;
+		return operatingExpense;
 	}
 	
 	public double creditSupplies(double thisAmount)
@@ -233,6 +248,12 @@ public class Account {
 	public double getTotalAssets()
 	{
 		return totalAssets;
+	}
+	
+	public String toString()
+	{
+		return String.format("%s %s %.2f",
+				     serialNo, description, amount);
 	}
 	
 }
